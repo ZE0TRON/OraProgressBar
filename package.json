@@ -1,6 +1,6 @@
 {
   "name": "ora-progress-bar",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A progress bar based on ora library",
   "main": "index.js",
   "repository": {
