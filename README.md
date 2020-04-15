@@ -9,7 +9,7 @@ A progress bar based on ora library.
 ```javascript
 const ProgressBar = require("ora-progress-bar");
 
-progressBar = new ProgressBar("Current Progress", 100);
+const progressBar = new ProgressBar("Current Progress", 100);
 ```
 
 ### Increase the progress using progressBar.progress(progress=1)
