@@ -11,8 +11,8 @@ let isActive = false;
  */
 function OraProgressBar(title, goal, options) {
   if (isActive) throw new Error("Only one spinner can be active at a time");
-  if (goal < 0 || !goal) throw new Error("Invalid goal");
-
+  if (goal < 0 || isNaN(goal)) throw new Error("Invalid goal");
+  let isStopped = false;
   this.goal = goal;
   let text = title;
   let currentText = text;
@@ -40,6 +40,7 @@ function OraProgressBar(title, goal, options) {
    * @param {number} step - Increment amount
    */
   this.progress = (step = 1) => {
+    if (isStopped) throw new Error("This progress bar already stopped");
     currentStep += step;
     updateText();
     if (currentStep >= this.goal) {
@@ -52,7 +53,9 @@ function OraProgressBar(title, goal, options) {
    * @param {string} text - Text to replace current text of progress bar.
    */
   this.fail = (text = "") => {
+    if (isStopped) throw new Error("This progress bar already stopped");
     spinner.fail(text);
+    isStopped = true;
     isActive = false;
   };
 
@@ -61,7 +64,9 @@ function OraProgressBar(title, goal, options) {
    * @param {string} text - Text to replace current text of progress bar.
    */
   this.succeed = (text = "") => {
+    if (isStopped) throw new Error("This progress bar already stopped");
     spinner.succeed(text);
+    isStopped = true;
     isActive = false;
   };
 
@@ -70,6 +75,7 @@ function OraProgressBar(title, goal, options) {
    * @param {number} newProgress - New progress value for the progress bar.
    */
   this.updateProgress = (newProgress) => {
+    if (isStopped) throw new Error("This progress bar already stopped");
     if (newProgress > this.goal)
       throw new Error("Invalid progress, progress cannot be bigger than goal");
     else if (newProgress === this.goal) {
@@ -87,6 +93,7 @@ function OraProgressBar(title, goal, options) {
    * @param {number} newGoal - New goal value for the progress bar.
    */
   this.updateGoal = (newGoal) => {
+    if (isStopped) throw new Error("This progress bar already stopped");
     if (newGoal < currentStep)
       throw new Error(
         "Invalid goal, goal cannot be smaller than current progress"

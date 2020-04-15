@@ -3,6 +3,9 @@
   "version": "1.0.1",
   "description": "A progress bar based on ora library",
   "main": "index.js",
+  "scripts": {
+    "test": "jest --detectOpenHandles"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ZE0TRON/OraProgressBar.git"
@@ -23,5 +26,8 @@
   "homepage": "https://github.com/ZE0TRON/OraProgressBar#readme",
   "dependencies": {
     "ora": "^4.0.3"
+  },
+  "devDependencies": {
+    "jest": "^25.3.0"
   }
 }
