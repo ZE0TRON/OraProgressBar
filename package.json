@@ -1,0 +1,27 @@
+{
+  "name": "ora-progress-bar",
+  "version": "1.0.0",
+  "description": "A progress bar based on ora library",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZE0TRON/OraProgressBar.git"
+  },
+  "keywords": [
+    "ora",
+    "progressbar",
+    "progress",
+    "bar",
+    "cli",
+    "progress-bar"
+  ],
+  "author": "ZE0TRON",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ZE0TRON/OraProgressBar/issues"
+  },
+  "homepage": "https://github.com/ZE0TRON/OraProgressBar#readme",
+  "dependencies": {
+    "ora": "^4.0.3"
+  }
+}
