@@ -13,6 +13,8 @@ function OraProgressBar(title, goal, options) {
   if (isActive) throw new Error("Only one spinner can be active at a time");
   if (goal < 0 || isNaN(goal)) throw new Error("Invalid goal");
   let isStopped = false;
+  let startTime = null;
+  let ETA = 0;
   this.goal = goal;
   let text = title;
   let currentText = text;
@@ -28,8 +30,35 @@ function OraProgressBar(title, goal, options) {
 
   isActive = true;
 
+  const calculateETA = () => {
+    if (startTime === null) {
+      startTime = new Date();
+    } else {
+      let progressTime = new Date();
+      let difference = progressTime - startTime;
+      return (difference / (currentStep - 1)) * (this.goal - (currentStep - 1));
+    }
+  };
+
+  const parseETA = () => {
+    if (isNaN(ETA)) {
+      return "ETA: Calculating";
+    }
+    const ETAHour = Math.floor(ETA / 3600000);
+    const ETAMinute = Math.floor((ETA % 3600000) / 60000);
+    const ETASecond = Math.floor((ETA % 60000) / 1000);
+    return `ETA: ${ETAHour}h:${ETAMinute}m:${ETASecond}s`;
+  };
+
+  const getPercentage = () => {
+    const percentage = Math.floor((currentStep / goal) * 100);
+    return `%${percentage}`;
+  };
+
   const updateText = () => {
-    currentText = `${text}  ${currentStep}/${this.goal}`;
+    const ETAString = parseETA();
+    const percentage = getPercentage();
+    currentText = `${text}  ${currentStep}/${this.goal}   ${percentage}\t${ETAString}`;
     spinner.text = currentText;
   };
 
@@ -42,6 +71,7 @@ function OraProgressBar(title, goal, options) {
   this.progress = (step = 1) => {
     if (isStopped) throw new Error("This progress bar already stopped");
     currentStep += step;
+    ETA = calculateETA();
     updateText();
     if (currentStep >= this.goal) {
       this.succeed();

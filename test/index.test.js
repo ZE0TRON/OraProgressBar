@@ -53,3 +53,15 @@ describe("Update the progress bar", () => {
     //TODO: implement the test
   });
 });
+
+describe("ETA", () => {
+  it("should calculate ETA", () => {
+    //TODO: implement the test
+  });
+  it("should parse ETA", () => {
+    //TODO: implement the test
+  });
+  it("should check ETA with update goal", () => {
+    //TODO: implement the test
+  });
+});
