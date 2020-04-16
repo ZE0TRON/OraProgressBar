@@ -1,7 +1,9 @@
 # Ora Progress Bar
 
 A cli progress bar based on ora library.
+
 ![](promo.gif)
+
 
 ## Usage
 
