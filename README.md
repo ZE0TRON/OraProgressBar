@@ -1,7 +1,7 @@
 # Ora Progress Bar
 
 A cli progress bar based on ora library.
-[](https://raw.githubusercontent.com/ZE0TRON/OraProgressBar/master/promo.gif)
+[Example](https://raw.githubusercontent.com/ZE0TRON/OraProgressBar/master/promo.gif)
 ## Usage
 
 ### Create a ProgressBar(title,numberOfSteps,options?)
