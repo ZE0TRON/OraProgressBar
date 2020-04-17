@@ -2,8 +2,9 @@
 
 A cli progress bar based on ora library.
 
-![](promo.gif)
+![](https://raw.githubusercontent.com/ZE0TRON/OraProgressBar/master/promo.gif)
 
+[NPM link](https://www.npmjs.com/package/ora-progress-bar)
 
 ## Usage
 
