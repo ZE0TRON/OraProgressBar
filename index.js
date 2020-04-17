@@ -20,7 +20,8 @@ function OraProgressBar(title, goal, options) {
   let currentText = text;
   let currentStep = 0;
   let spinner = {};
-
+  let lastDifference = 0;
+  const alpha = 0.6;
   if (options) {
     options.text = currentText;
     spinner = ora(options).start();
@@ -36,7 +37,15 @@ function OraProgressBar(title, goal, options) {
     } else {
       let progressTime = new Date();
       let difference = progressTime - startTime;
-      return (difference / (currentStep - 1)) * (this.goal - (currentStep - 1));
+      if (lastDifference === 0) {
+        lastDifference = difference;
+      }
+
+      const expDifference = difference * alpha + (1 - alpha) * lastDifference;
+      lastDifference = expDifference;
+      return (
+        (expDifference / (currentStep - 1)) * (this.goal - (currentStep - 1))
+      );
     }
   };
 
